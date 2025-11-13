@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/YusufAlper17/ufka-yolculuk-quiz/discussions
+    about: Genel sorular ve tartışmalar için / For general questions and discussions
+  - name: 📚 Dokümantasyon / Documentation
+    url: https://github.com/YusufAlper17/ufka-yolculuk-quiz/blob/main/README.md
+    about: Proje dokümantasyonunu okuyun / Read the project documentation
+  - name: 🚀 Kurulum Kılavuzu / Setup Guide
+    url: https://github.com/YusufAlper17/ufka-yolculuk-quiz/blob/main/SETUP_GUIDE.md
+    about: Detaylı kurulum kılavuzu / Detailed setup guide
+

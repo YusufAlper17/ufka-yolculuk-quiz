@@ -1,0 +1,53 @@
+# Git attributes for proper handling of files
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Dart files
+*.dart text
+*.yaml text
+*.yml text
+*.json text
+*.md text
+
+# Image files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+
+# Audio files
+*.mp3 binary
+*.wav binary
+
+# Archive files
+*.jar binary
+*.jks binary
+*.keystore binary
+*.p12 binary
+
+# iOS files
+*.pbxproj text
+*.plist text
+*.strings text
+*.storyboard text
+
+# Android files
+*.gradle text
+*.properties text
+*.xml text
+
+# Documentation
+*.md text diff=markdown
+
+# Scripts
+*.sh text eol=lf
+*.bat text eol=crlf
+
+# Exclude files from export
+.gitattributes export-ignore
+.gitignore export-ignore
+.github export-ignore
+

@@ -1,0 +1,15 @@
+# GitHub Sponsors için yapılandırma
+# Configuration for GitHub Sponsors
+
+# Kullanıcı adınızı ekleyin (opsiyonel)
+# Add your username (optional)
+
+# github: [YusufAlper17]
+
+# Diğer sponsor platformları (opsiyonel)
+# Other sponsor platforms (optional)
+
+# patreon: username
+# ko_fi: username
+# custom: ['https://www.buymeacoffee.com/username']
+

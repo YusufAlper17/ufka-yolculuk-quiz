@@ -1,0 +1,43 @@
+name: ufyo
+description: "UFYO Sınav Uygulaması"
+publish_to: 'none'
+
+version: 1.0.1+8
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+  google_mobile_ads: ^5.1.0
+  google_fonts: ^6.2.1
+  audioplayers: ^6.0.0
+  animate_do: ^3.3.4
+  shimmer: ^3.0.0
+  flutter_staggered_animations: ^1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  adaptive_icon_background: "#0A0E1A"
+  adaptive_icon_foreground: "assets/icon/app_icon.png"
+  remove_alpha_ios: true
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/
+    - assets/images/
+    - assets/sounds/
+    - assets/icon/ 

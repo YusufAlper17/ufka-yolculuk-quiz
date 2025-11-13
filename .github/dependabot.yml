@@ -1,0 +1,39 @@
+# Dependabot yapılandırması - Bağımlılıkları otomatik günceller
+# Dependabot configuration - Automatically updates dependencies
+
+version: 2
+updates:
+  # GitHub Actions güncellemeleri
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      
+  # Pub bağımlılıkları (Flutter/Dart)
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "flutter"
+    commit-message:
+      prefix: "deps"
+    open-pull-requests-limit: 10
+    
+  # Gradle bağımlılıkları (Android)
+  - package-ecosystem: "gradle"
+    directory: "/android"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "android"
+    commit-message:
+      prefix: "deps"
+

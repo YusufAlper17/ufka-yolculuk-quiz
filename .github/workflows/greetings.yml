@@ -1,0 +1,48 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: |
+          👋 Merhaba! İlk issue'nuz için teşekkürler!
+          
+          Katkıda bulunmak istiyorsanız, lütfen [CONTRIBUTING.md](../CONTRIBUTING.md) dosyasını okuyun.
+          
+          ---
+          
+          👋 Hello! Thanks for your first issue!
+          
+          If you'd like to contribute, please read [CONTRIBUTING.md](../CONTRIBUTING.md).
+          
+        pr-message: |
+          👋 Merhaba! İlk Pull Request'iniz için teşekkürler!
+          
+          Lütfen PR'ınızın şunları içerdiğinden emin olun:
+          - ✅ Kod analizi geçiyor (`flutter analyze`)
+          - ✅ Testler başarılı (`flutter test`)
+          - ✅ Kod stili uygun
+          - ✅ Anlamlı commit mesajları
+          
+          Katkınız için teşekkürler! 🎉
+          
+          ---
+          
+          👋 Hello! Thanks for your first Pull Request!
+          
+          Please make sure your PR:
+          - ✅ Passes code analysis (`flutter analyze`)
+          - ✅ All tests pass (`flutter test`)
+          - ✅ Follows code style
+          - ✅ Has meaningful commit messages
+          
+          Thank you for your contribution! 🎉
+
