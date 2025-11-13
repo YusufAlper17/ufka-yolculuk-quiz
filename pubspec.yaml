@@ -16,7 +16,7 @@ dependencies:
   google_mobile_ads: ^5.1.0
   google_fonts: ^6.2.1
   audioplayers: ^6.0.0
-  animate_do: ^3.3.4
+  animate_do: ^4.2.0
   shimmer: ^3.0.0
   flutter_staggered_animations: ^1.1.1
 
