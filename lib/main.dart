@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/providers/app_provider.dart';
@@ -41,13 +42,14 @@ class _InitializerWidgetState extends State<InitializerWidget> {
     try {
       debugPrint('Starting initialization...');
       
-      // MobileAds'i başlat
-      try {
-        await MobileAds.instance.initialize();
-        debugPrint('MobileAds initialized');
-      } catch (e) {
-        debugPrint('Error initializing MobileAds: $e');
-        // MobileAds hatası kritik değil, devam et
+      // MobileAds yalnızca mobil platformlarda başlatılır
+      if (!kIsWeb) {
+        try {
+          await MobileAds.instance.initialize();
+          debugPrint('MobileAds initialized');
+        } catch (e) {
+          debugPrint('Error initializing MobileAds: $e');
+        }
       }
 
       // QuizProvider'ı başlat
@@ -117,7 +119,7 @@ class _InitializerWidgetState extends State<InitializerWidget> {
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF14B8A6).withOpacity(0.3),
+                              color: const Color(0xFF14B8A6).withValues(alpha: 0.3),
                               blurRadius: 30,
                               spreadRadius: 5,
                             ),
@@ -215,7 +217,7 @@ class _InitializerWidgetState extends State<InitializerWidget> {
       child: Consumer<AppProvider>(
         builder: (context, appProvider, _) {
           return MaterialApp(
-            title: 'UFYOV2',
+            title: 'UFYO — Ufka Yolculuk',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: appProvider.themeMode,
@@ -250,7 +252,7 @@ class _BackgroundPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.02)
+      ..color = Colors.white.withValues(alpha: 0.02)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
 
@@ -265,7 +267,7 @@ class _BackgroundPatternPainter extends CustomPainter {
 
     // Noktalar deseni
     final dotPaint = Paint()
-      ..color = Colors.white.withOpacity(0.03)
+      ..color = Colors.white.withValues(alpha: 0.03)
       ..style = PaintingStyle.fill;
 
     for (double x = 0; x < size.width; x += 40) {
@@ -284,7 +286,7 @@ class _BackgroundPatternPainter extends CustomPainter {
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 40);
 
     // Üst sol köşede parıltı
-    glowPaint.color = const Color(0xFF14B8A6).withOpacity(0.08);
+    glowPaint.color = const Color(0xFF14B8A6).withValues(alpha: 0.08);
     canvas.drawCircle(
       Offset(size.width * 0.2, size.height * 0.15),
       100,
@@ -292,7 +294,7 @@ class _BackgroundPatternPainter extends CustomPainter {
     );
 
     // Alt sağ köşede parıltı
-    glowPaint.color = const Color(0xFF0891B2).withOpacity(0.06);
+    glowPaint.color = const Color(0xFF0891B2).withValues(alpha: 0.06);
     canvas.drawCircle(
       Offset(size.width * 0.8, size.height * 0.85),
       120,

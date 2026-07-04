@@ -1,11 +1,11 @@
 {
-    "name": "appv1",
-    "short_name": "appv1",
+    "name": "UFYO — Ufka Yolculuk",
+    "short_name": "UFYO",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0A0E1A",
+    "theme_color": "#0A0E1A",
+    "description": "Ufka Yolculuk interaktif quiz uygulaması — Flutter ile geliştirilmiş cross-platform deneyim.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -16,6 +16,7 @@ class AdService {
   static int maxFailedLoadAttempts = 3;
 
   static Future<bool> loadInterstitialAd() async {
+    if (kIsWeb) return false;
     if (_isInterstitialAdLoading) return false;
     if (_isInterstitialAdReady) return true;
     
@@ -81,6 +82,7 @@ class AdService {
   }
 
   static Future<bool> showInterstitialAd() async {
+    if (kIsWeb) return false;
     if (!_isInterstitialAdReady || _interstitialAd == null) {
       // Reklam hazır değilse yüklemeyi dene
       final isLoaded = await loadInterstitialAd();

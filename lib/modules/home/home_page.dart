@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -65,7 +64,7 @@ class HomePage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(24),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: const Color(0xFF0891B2).withOpacity(0.4),
+                                    color: const Color(0xFF0891B2).withValues(alpha: 0.4),
                                     blurRadius: 24,
                                     offset: const Offset(0, 12),
                                     spreadRadius: -4,
@@ -82,10 +81,10 @@ class HomePage extends StatelessWidget {
                                       vertical: 8,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.2),
+                                      color: Colors.white.withValues(alpha: 0.2),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
-                                        color: Colors.white.withOpacity(0.3),
+                                        color: Colors.white.withValues(alpha: 0.3),
                                         width: 1.5,
                                       ),
                                     ),
@@ -122,7 +121,7 @@ class HomePage extends StatelessWidget {
                                       letterSpacing: -1,
                                       shadows: [
                                         Shadow(
-                                          color: Colors.black.withOpacity(0.1),
+                                          color: Colors.black.withValues(alpha: 0.1),
                                           offset: const Offset(0, 2),
                                           blurRadius: 4,
                                         ),
@@ -137,11 +136,11 @@ class HomePage extends StatelessWidget {
                                       vertical: 10,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.15),
+                                      color: Colors.white.withValues(alpha: 0.15),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Row(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisSize: MainAxisSize.max,
                                       children: [
                                         const Icon(
                                           Icons.auto_awesome_rounded,
@@ -149,13 +148,17 @@ class HomePage extends StatelessWidget {
                                           size: 18,
                                         ),
                                         const SizedBox(width: 8),
-                                        Text(
-                                          'Kategorini seç ve bilgi yolculuğuna başla',
-                                          style: GoogleFonts.inter(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.white,
-                                            height: 1.3,
+                                        Expanded(
+                                          child: Text(
+                                            'Kategorini seç ve bilgi yolculuğuna başla',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.inter(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white,
+                                              height: 1.3,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -328,7 +331,7 @@ class HomePage extends StatelessWidget {
                     color: AppColors.surfaceLight,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_forward_rounded,
                     size: 18,
                     color: AppColors.textDark,

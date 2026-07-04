@@ -1,38 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="UFYO — Ufka Yolculuk interaktif quiz uygulaması. Flutter ile geliştirilmiş canlı demo.">
+  <meta name="theme-color" content="#0a0e1a">
 
-  <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="appv1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="UFYO">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>appv1</title>
+  <title>UFYO — Ufka Yolculuk | Canlı Demo</title>
   <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="galaxy-frame.css">
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <!-- Desktop / tablet portfolio preview -->
+  <div id="portfolio-shell" class="portfolio-shell">
+    <div class="portfolio-bg" aria-hidden="true">
+      <span class="deco deco--rings deco--tl"></span>
+      <span class="deco deco--rings deco--br"></span>
+      <span class="deco deco--hex"></span>
+      <span class="deco deco--triangle"></span>
+      <span class="deco deco--dot deco--dot-1"></span>
+      <span class="deco deco--dot deco--dot-2"></span>
+      <span class="deco deco--dot deco--dot-3"></span>
+    </div>
+
+    <div class="portfolio-layout">
+      <aside class="portfolio-info">
+        <div class="info-header">
+          <img class="info-logo" src="icons/app_icon.png" alt="UFYO" width="54" height="54">
+          <span class="portfolio-badge">Canlı Demo</span>
+        </div>
+        <p class="portfolio-eyebrow">Ufka Yolculuk</p>
+        <h1 class="portfolio-title">Bilgi Yarışması</h1>
+        <p class="portfolio-subtitle">
+          Flutter ile geliştirilmiş interaktif quiz uygulaması.
+          Kategoriler, çoklu seviyeler ve gerçek zamanlı ilerleme takibi ile
+          eğlenceli bir öğrenme deneyimi.
+        </p>
+        <ul class="portfolio-features">
+          <li>4 kategori · çoklu seviye sistemi</li>
+          <li>Animasyonlu arayüz & ses efektleri</li>
+          <li>İlerleme kaydı & detaylı sonuç raporu</li>
+        </ul>
+        <div class="portfolio-divider"></div>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">Flutter</span>
+          <span class="portfolio-tag">Dart</span>
+          <span class="portfolio-tag">Provider</span>
+          <span class="portfolio-tag">Cross-platform</span>
+        </div>
+        <p class="portfolio-hint">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="m17 8 4 4-4 4"/><path d="M21 12h-9"/></svg>
+          Cihaz ekranında dokunun, kaydırın ve doğrudan deneyin
+        </p>
+      </aside>
+
+      <main class="device-showcase">
+        <div class="device-glow" aria-hidden="true"></div>
+        <div class="galaxy-device">
+          <div class="galaxy-side-button galaxy-side-button--volume" aria-hidden="true"></div>
+          <div class="galaxy-side-button galaxy-side-button--power" aria-hidden="true"></div>
+
+          <div class="galaxy-frame">
+            <div class="punch-hole-camera" aria-hidden="true"></div>
+
+            <div class="galaxy-screen-stack">
+              <div class="status-bar" aria-hidden="true">
+                <span class="status-bar__time">9:41</span>
+                <div class="status-bar__icons">
+                  <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="0.5"/><rect x="4" y="5" width="3" height="7" rx="0.5"/><rect x="8" y="2" width="3" height="10" rx="0.5"/><rect x="12" y="0" width="3" height="12" rx="0.5"/></svg>
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4C10.4 2.4 12.5 3.4 14 5L15.5 3.5C13.6 1.3 10.9 0 8 0S2.4 1.3 0.5 3.5L2 5C3.5 3.4 5.6 2.4 8 2.4Z"/><path d="M8 6.4C9.6 6.4 11 7.1 12 8.2L13.5 6.7C12 5.2 10.1 4.4 8 4.4S4 5.2 2.5 6.7L4 8.2C5 7.1 6.4 6.4 8 6.4Z"/><circle cx="8" cy="11" r="1.5"/></svg>
+                  <svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x="0.5" y="0.5" width="22" height="12" rx="3" stroke="currentColor" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="9" rx="1.5" fill="currentColor"/><path d="M24 4.5V8.5C25 8 25.5 7 25.5 6.5V6C25.5 5.5 25 4.5 24 4Z" fill="currentColor" fill-opacity="0.4"/></svg>
+                </div>
+              </div>
+
+              <div id="app-screen" class="app-screen">
+                <div id="flutter-loading" class="flutter-loading">
+                  <img class="flutter-loading__icon" src="icons/app_icon.png" alt="UFYO" width="72" height="72">
+                  <div class="flutter-loading__spinner" role="status" aria-label="Yükleniyor"></div>
+                  <span class="flutter-loading__text">Yükleniyor…</span>
+                </div>
+              </div>
+
+              <div class="gesture-bar" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+        <span class="device-label">Samsung Galaxy S26 Ultra · Android Preview</span>
+      </main>
+    </div>
+  </div>
+
+  <!-- Real mobile devices: full-screen native experience -->
+  <div id="app-screen-mobile" class="app-screen-mobile"></div>
+
+  <script>
+    (function () {
+      var isMobileNative = window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)').matches;
+      var shell = document.getElementById('portfolio-shell');
+      var mobileHost = document.getElementById('app-screen-mobile');
+      var desktopHost = document.getElementById('app-screen');
+
+      if (isMobileNative) {
+        document.body.classList.add('mobile-native');
+        shell.style.display = 'none';
+      } else {
+        document.body.classList.add('desktop-preview');
+        mobileHost.style.display = 'none';
+      }
+
+      window.__ufyoHostElement = isMobileNative ? mobileHost : desktopHost;
+    })();
+  </script>
+
+  <script>
+    {{flutter_js}}
+    {{flutter_build_config}}
+
+    _flutter.loader.load({
+      serviceWorkerSettings: {
+        serviceWorkerVersion: {{flutter_service_worker_version}},
+      },
+      config: {
+        hostElement: window.__ufyoHostElement,
+      },
+      onEntrypointLoaded: async function (engineInitializer) {
+        var loading = document.getElementById('flutter-loading');
+        try {
+          var appRunner = await engineInitializer.initializeEngine({
+            hostElement: window.__ufyoHostElement,
+          });
+          if (loading) {
+            loading.classList.add('hidden');
+          }
+          await appRunner.runApp();
+        } catch (err) {
+          console.error('UFYO başlatma hatası:', err);
+          if (loading) {
+            loading.querySelector('.flutter-loading__text').textContent = 'Yüklenemedi. Sayfayı yenileyin.';
+          }
+        }
+      },
+    });
+  </script>
 </body>
 </html>

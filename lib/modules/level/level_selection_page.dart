@@ -45,12 +45,12 @@ class LevelSelectionPage extends StatelessWidget {
                       color: AppColors.warningDark,
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.warning.withOpacity(0.5),
+                        color: AppColors.warning.withValues(alpha: 0.5),
                         width: 2,
                       ),
                       boxShadow: AppTheme.coloredGlow(AppColors.warning, 0.3),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.lock_rounded,
                       size: 48,
                       color: AppColors.warning,
@@ -186,11 +186,11 @@ class LevelSelectionPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColors.surface,
                     borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: AppColors.shadowLight,
                         blurRadius: 16,
-                        offset: const Offset(0, 4),
+                        offset: Offset(0, 4),
                       ),
                     ],
                   ),
@@ -204,7 +204,7 @@ class LevelSelectionPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_ios_new_rounded,
                             color: AppColors.textDark,
                             size: 20,
@@ -218,10 +218,10 @@ class LevelSelectionPage extends StatelessWidget {
                         width: 44,
                         height: 44,
                         decoration: BoxDecoration(
-                          color: categoryColor.withOpacity(0.15),
+                          color: categoryColor.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                            color: categoryColor.withOpacity(0.3),
+                            color: categoryColor.withValues(alpha: 0.3),
                             width: 1.5,
                           ),
                         ),
@@ -270,13 +270,13 @@ class LevelSelectionPage extends StatelessWidget {
               Expanded(
                 child: AnimationLimiter(
                   child: GridView.builder(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.fromLTRB(18, 14, 18, 24),
                     physics: const BouncingScrollPhysics(),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                      childAspectRatio: 1.1,
+                      mainAxisSpacing: 14,
+                      crossAxisSpacing: 14,
+                      childAspectRatio: 1.0,
                     ),
                     itemCount: 10,
                     itemBuilder: (context, index) {
@@ -371,14 +371,14 @@ class LevelSelectionPage extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Level Icon/Number
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 52,
+                      height: 52,
                       decoration: BoxDecoration(
                         color: isLocked 
                             ? AppColors.borderLight
@@ -387,15 +387,15 @@ class LevelSelectionPage extends StatelessWidget {
                       ),
                       child: Center(
                         child: isLocked
-                            ? Icon(
+                            ? const Icon(
                                 Icons.lock_rounded,
-                                size: 28,
+                                size: 24,
                                 color: AppColors.textMuted,
                               )
                             : Text(
                                 level.toString(),
                                 style: GoogleFonts.poppins(
-                                  fontSize: 26,
+                                  fontSize: 23,
                                   fontWeight: FontWeight.bold,
                                   color: categoryColor,
                                 ),
@@ -403,19 +403,19 @@ class LevelSelectionPage extends StatelessWidget {
                       ),
                     ),
                     
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     
                     // Level Text
                     Text(
                       'Seviye $level',
                       style: GoogleFonts.poppins(
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.w700,
                         color: isLocked ? AppColors.textMuted : AppColors.textDark,
                       ),
                     ),
                     
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 3),
                     
                     // Status Text
                     if (isCompleted)
@@ -441,7 +441,7 @@ class LevelSelectionPage extends StatelessWidget {
                       Text(
                         '10 Deneme',
                         style: GoogleFonts.inter(
-                          fontSize: 12,
+                          fontSize: 11,
                           color: AppColors.textLight,
                         ),
                       ),
@@ -456,7 +456,7 @@ class LevelSelectionPage extends StatelessWidget {
                   right: 12,
                   child: Container(
                     padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.success,
                       shape: BoxShape.circle,
                     ),

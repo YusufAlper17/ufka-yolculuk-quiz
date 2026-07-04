@@ -1,0 +1,693 @@
+/* UFYO portfolio preview: Samsung Galaxy Ultra device shell */
+
+:root {
+  --brand-bg: #060d18;
+  --brand-bg-soft: #0a1424;
+  --brand-panel: #0c1a2e;
+  --brand-card: #12233a;
+  --brand-primary: #14b8a6;
+  --brand-primary-2: #38bdf8;
+  --brand-primary-soft: rgba(20, 184, 166, 0.12);
+  --brand-primary-border: rgba(20, 184, 166, 0.34);
+  --brand-text: #f1f6fb;
+  --brand-muted: #a7b6c8;
+  --brand-subtle: #6a7c92;
+  --brand-border: rgba(226, 232, 240, 0.09);
+  --brand-line: rgba(120, 170, 190, 0.06);
+
+  --device-width: 404px;
+  --device-height: 878px;
+  --device-scale: 0.84;
+  --frame-radius: 44px;
+  --screen-radius: 36px;
+  --bezel: 9px;
+  --status-height: 46px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.desktop-preview {
+  background: var(--brand-bg);
+  color: var(--brand-text);
+}
+
+body.mobile-native {
+  background: #000;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────  Shell + Background ───────────────────────────── */
+.portfolio-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--brand-bg);
+}
+
+.portfolio-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--brand-bg);
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(20, 184, 166, 0.14), transparent 42%),
+    radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.1), transparent 45%),
+    radial-gradient(circle at 78% 12%, rgba(20, 184, 166, 0.06), transparent 40%);
+}
+
+/* fine grid + diagonal maths lines, like the in-app painter */
+.portfolio-bg::before {
+  content: '';
+  position: absolute;
+  inset: -10%;
+  background-image:
+    linear-gradient(var(--brand-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--brand-line) 1px, transparent 1px),
+    repeating-linear-gradient(45deg, rgba(20, 184, 166, 0.045) 0, rgba(20, 184, 166, 0.045) 1px, transparent 1px, transparent 26px);
+  background-size: 52px 52px, 52px 52px, auto;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 45%, #000 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 45%, #000 35%, transparent 85%);
+}
+
+/* decorative geometric shapes */
+.deco {
+  position: absolute;
+  pointer-events: none;
+}
+
+.deco--rings,
+.deco--rings::before,
+.deco--rings::after {
+  border-radius: 50%;
+  border: 1px solid rgba(20, 184, 166, 0.16);
+}
+
+.deco--rings::before,
+.deco--rings::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.deco--rings::before { width: 68%; height: 68%; }
+.deco--rings::after { width: 38%; height: 38%; border-color: rgba(56, 189, 248, 0.16); }
+
+.deco--tl {
+  width: 260px;
+  height: 260px;
+  top: -90px;
+  left: -70px;
+}
+
+.deco--br {
+  width: 340px;
+  height: 340px;
+  right: -120px;
+  bottom: -130px;
+  border-color: rgba(56, 189, 248, 0.12);
+}
+
+.deco--hex {
+  width: 120px;
+  height: 138px;
+  top: 16%;
+  right: 12%;
+  border: 1.5px solid rgba(20, 184, 166, 0.18);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  opacity: 0.7;
+}
+
+.deco--triangle {
+  width: 0;
+  height: 0;
+  left: 8%;
+  bottom: 14%;
+  border-left: 46px solid transparent;
+  border-right: 46px solid transparent;
+  border-bottom: 80px solid rgba(56, 189, 248, 0.07);
+  transform: rotate(-14deg);
+}
+
+.deco--dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(20, 184, 166, 0.4);
+  box-shadow: 0 0 12px rgba(20, 184, 166, 0.5);
+}
+
+.deco--dot-1 { top: 22%; left: 20%; }
+.deco--dot-2 { top: 70%; left: 30%; width: 6px; height: 6px; }
+.deco--dot-3 { top: 30%; right: 26%; width: 5px; height: 5px; }
+
+/* ─────────────────────────────  Layout ───────────────────────────── */
+.portfolio-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) auto;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  justify-content: center;
+  max-width: 1180px;
+  width: 100%;
+  padding: 28px clamp(20px, 4vw, 48px);
+}
+
+/* ─────────────────────────────  Info card ───────────────────────────── */
+.portfolio-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 30px;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(18, 35, 58, 0.92), rgba(10, 20, 36, 0.92));
+  border: 1px solid var(--brand-border);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  animation: fadeSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.portfolio-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-2));
+  opacity: 0.9;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.info-logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid var(--brand-border);
+  box-shadow: 0 8px 24px rgba(20, 184, 166, 0.22);
+}
+
+.portfolio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--brand-primary-soft);
+  border: 1px solid var(--brand-primary-border);
+  color: var(--brand-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.portfolio-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  box-shadow: 0 0 12px rgba(20, 184, 166, 0.7);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.portfolio-eyebrow {
+  margin: 6px 0 -6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+}
+
+.portfolio-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--brand-text);
+}
+
+.portfolio-subtitle {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: var(--brand-muted);
+}
+
+.portfolio-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-features li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 13px;
+  color: var(--brand-muted);
+}
+
+.portfolio-features li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 7px;
+  background-color: var(--brand-primary-soft);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2314b8a6'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid rgba(20, 184, 166, 0.22);
+}
+
+.portfolio-divider {
+  height: 1px;
+  background: var(--brand-border);
+  margin: 4px 0;
+}
+
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.portfolio-tag {
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: var(--brand-card);
+  border: 1px solid var(--brand-border);
+  color: var(--brand-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.portfolio-hint {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  color: var(--brand-subtle);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-hint svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ─────────────────────────────  Device ───────────────────────────── */
+.device-showcase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  min-width: calc((var(--device-width) + var(--bezel) * 2) * var(--device-scale));
+  animation: fadeSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.device-glow {
+  position: absolute;
+  width: 360px;
+  height: 640px;
+  border-radius: 64px;
+  background: rgba(20, 184, 166, 0.08);
+  box-shadow: 0 0 100px rgba(20, 184, 166, 0.18);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.galaxy-device {
+  position: relative;
+  transform: scale(var(--device-scale));
+  transform-origin: center center;
+  filter: drop-shadow(0 34px 60px rgba(0, 0, 0, 0.55))
+          drop-shadow(0 6px 18px rgba(0, 0, 0, 0.36));
+}
+
+.galaxy-frame {
+  position: relative;
+  width: calc(var(--device-width) + var(--bezel) * 2);
+  height: calc(var(--device-height) + var(--bezel) * 2);
+  padding: var(--bezel);
+  border-radius: var(--frame-radius);
+  background: #14181f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.34);
+}
+
+.galaxy-frame::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: calc(var(--frame-radius) - 4px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.galaxy-side-button {
+  position: absolute;
+  width: 3px;
+  border-radius: 2px;
+  background: #2b313a;
+  box-shadow: inset 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 5;
+}
+
+.galaxy-side-button--volume {
+  right: -3px;
+  top: 168px;
+  height: 74px;
+}
+
+.galaxy-side-button--power {
+  right: -3px;
+  top: 260px;
+  height: 58px;
+}
+
+.galaxy-screen-stack {
+  position: relative;
+  width: var(--device-width);
+  height: var(--device-height);
+  overflow: hidden;
+  border-radius: var(--screen-radius);
+  background: #05070d;
+}
+
+.punch-hole-camera {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #010204;
+  border: 2px solid #0c1119;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 0 3px rgba(70, 120, 200, 0.5);
+  z-index: 30;
+}
+
+/* status bar sits inside the black strip above the app */
+.status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--status-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 26px;
+  padding-top: 6px;
+  z-index: 20;
+  pointer-events: none;
+  color: #eef4fb;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.status-bar__time {
+  width: 44px;
+}
+
+.status-bar__icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-bar__icons svg {
+  display: block;
+}
+
+/* app pushed below the status strip so the camera never covers content */
+.app-screen {
+  position: absolute;
+  top: var(--status-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: #0a0e1a;
+  touch-action: pan-y;
+}
+
+.app-screen flutter-view,
+.app-screen flt-glass-pane,
+.app-screen canvas,
+.app-screen > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.gesture-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 116px;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(238, 244, 251, 0.5);
+  z-index: 25;
+  pointer-events: none;
+}
+
+.device-label {
+  margin-top: calc(-1 * (var(--device-height) + var(--bezel) * 2) * (1 - var(--device-scale)) / 2);
+  font-size: 12.5px;
+  color: var(--brand-subtle);
+  letter-spacing: 0.02em;
+}
+
+/* ─────────────────────────────  Loading ───────────────────────────── */
+.flutter-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: #0a0e1a;
+  z-index: 15;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.flutter-loading.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.flutter-loading__icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 10px 28px rgba(20, 184, 166, 0.22);
+}
+
+.flutter-loading__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  border-top-color: var(--brand-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.flutter-loading__text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.04em;
+}
+
+/* ─────────────────────────────  Mobile native ───────────────────────────── */
+.app-screen-mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0e1a;
+}
+
+body.mobile-native .app-screen-mobile {
+  display: block;
+}
+
+body.mobile-native .portfolio-shell {
+  display: none;
+}
+
+body.mobile-native .app-screen-mobile flutter-view,
+body.mobile-native .app-screen-mobile flt-glass-pane,
+body.mobile-native .app-screen-mobile canvas,
+body.mobile-native .app-screen-mobile > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ─────────────────────────────  Responsive ───────────────────────────── */
+@media (min-height: 980px) and (min-width: 1120px) {
+  :root { --device-scale: 0.9; }
+}
+
+@media (max-height: 860px) and (min-width: 769px) {
+  :root { --device-scale: 0.72; }
+
+  .portfolio-info {
+    gap: 14px;
+    padding: 24px;
+  }
+
+  .portfolio-title {
+    font-size: clamp(1.8rem, 3.4vw, 2.3rem);
+  }
+}
+
+@media (max-width: 1040px) and (min-width: 701px) {
+  :root { --device-scale: 0.64; }
+
+  .portfolio-layout {
+    grid-template-columns: minmax(220px, 300px) auto;
+    gap: 20px;
+    padding: 16px 18px;
+  }
+
+  .portfolio-info {
+    gap: 12px;
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .portfolio-title {
+    font-size: clamp(1.7rem, 3.4vw, 2.1rem);
+  }
+
+  .portfolio-subtitle {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .portfolio-features li,
+  .portfolio-hint {
+    font-size: 12px;
+  }
+}
+
+@media (max-height: 740px) and (min-width: 769px) {
+  :root { --device-scale: 0.6; }
+
+  .portfolio-info { gap: 11px; }
+  .portfolio-features { gap: 7px; }
+  .portfolio-hint { display: none; }
+}
+
+@media (max-width: 700px) {
+  .portfolio-layout {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 24px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+
+  .portfolio-info {
+    align-items: stretch;
+    max-width: 520px;
+    text-align: left;
+  }
+
+  .portfolio-features {
+    align-items: flex-start;
+  }
+
+  .portfolio-hint {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  :root { --device-scale: 0.72; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-info,
+  .device-showcase,
+  .flutter-loading__spinner,
+  .portfolio-badge::before {
+    animation: none;
+  }
+}
