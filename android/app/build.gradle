@@ -85,7 +85,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     
     // Google Play Services
-    implementation 'com.google.android.gms:play-services-ads:22.6.0'
+    implementation 'com.google.android.gms:play-services-ads:24.7.0'
     implementation 'com.google.android.gms:play-services-base:18.3.0'
     
     // Firebase
